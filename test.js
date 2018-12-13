@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  var userid = '95654151505051648';
+  var userid = '152570331830288386';
   var messagecont = [];
   //var channelid = [];
   //client.channels.tap(channel => channelid.push(channel.id));
@@ -29,7 +29,7 @@ client.on('ready', () => {
           
           if (messages.size != 0) messagesfunct();
         });
-        //console.log(messagecont);
+        console.log(messagecont);
 
         
     }
