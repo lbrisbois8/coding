@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  var userid = '141714690479751169';
+  var userid = '277667582067212289';
   var messagecont = [];
   //var channelid = [];
   //client.channels.tap(channel => channelid.push(channel.id));
@@ -35,24 +35,28 @@ client.on('ready', () => {
     }
     if (channel1.type != "voice" && channel1.type != "category")
     messagesfunct();
-  }
-  
-var filteredguilds = client.guilds.filter((guild) => {
-var filteredmembers = guild.members.filter((member) => member.id == userid) 
+  } 
+  client.guilds.tap((guild)=>{
+    guild.fetchMembers()
+    .then((guildfullmembers) => {
+        //(console.log(guildfullmembers.name+' has '+guildfullmembers.members.array().length+' members' ));
+
+var filteredmembers = guildfullmembers.members.filter((member) => member.id == userid) 
 filteredmembers = filteredmembers.array();
-if (filteredmembers.length > 0) return true;
-
-  
-})
-
-filteredguilds.tap((guild) => {
-
-  guild.channels.tap((channel) => {
+if (filteredmembers.length > 0)
+{console.log(userid+'was found in '+guildfullmembers.name);
+guildfullmembers.channels.tap((channel) => {
 
     getmessagecontent(channel.id);
   })
+}
 })
-console.log(messagecont.length);
+})
+
+
+
+
+//console.log(messagecont.length);
 
 //getmessagecontent(channelid);
 
